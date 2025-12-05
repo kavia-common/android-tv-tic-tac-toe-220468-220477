@@ -1,0 +1,4 @@
+{
+    "command": "./gradlew installDebug",
+    "working_directory": "/home/kavia/workspace/code-generation/android-tv-tic-tac-toe-220468-220477/android_tv_frontend"
+}
