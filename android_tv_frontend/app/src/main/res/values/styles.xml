@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme for Android TV -->
+    <!-- Base application theme for Android TV using Ocean Professional -->
     <style name="AppTheme" parent="Theme.Leanback">
-        <!-- Customize your theme here -->
-        <item name="android:windowBackground">@color/tv_background</item>
-        <item name="android:colorPrimary">@color/tv_accent</item>
+        <item name="android:windowBackground">@color/ocean_background</item>
+        <item name="android:colorPrimary">@color/ocean_primary</item>
+        <item name="android:colorAccent">@color/ocean_secondary</item>
+        <item name="android:textColorPrimary">@color/ocean_text</item>
+        <item name="android:textColorSecondary">@color/ocean_text_secondary</item>
+    </style>
+
+    <!-- Top bar title text -->
+    <style name="TopTitleText">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/ocean_text</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Subtitle / helper text -->
+    <style name="SubtleText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/ocean_text_secondary</item>
+    </style>
+
+    <!-- Focusable action button style -->
+    <style name="ActionButton">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/ocean_text</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:background">@drawable/bg_button_surface</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+
+    <!-- Cell text style -->
+    <style name="CellMarkText">
+        <item name="android:textSize">48sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/ocean_text</item>
     </style>
 </resources>

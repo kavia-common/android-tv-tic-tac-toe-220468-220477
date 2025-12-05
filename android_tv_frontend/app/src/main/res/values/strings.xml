@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">android_tv_frontend</string>
-    
-    <!-- Rating Screen Strings -->
-    <string name="rating_title">Did you like it?</string>
-    <string name="rating_message">Your vote helps us recommend more content like this.</string>
-    <string name="rating_like">I like it</string>
-    <string name="rating_love">I love it</string>
-    <string name="rating_dislike">I don\'t like it</string>
-    <string name="rating_close">Close</string>
-    <string name="rating_countdown">Closing in %d seconds</string>
+
+    <!-- Game Strings -->
+    <string name="game_title">Tic Tac Toe (Android TV)</string>
+    <string name="player_x_turn">Player X turn</string>
+    <string name="player_o_turn">Player O turn</string>
+    <string name="player_x_wins">Player X wins!</string>
+    <string name="player_o_wins">Player O wins!</string>
+    <string name="draw_message">It’s a draw!</string>
+    <string name="play_again">Play Again</string>
+    <string name="ok">OK</string>
+    <string name="reset_game">Reset Game</string>
+    <string name="about_help">About / Help</string>
+    <string name="about_text">Use the TV remote DPAD to move. Press Select to mark a tile. X starts, O follows.</string>
 </resources>

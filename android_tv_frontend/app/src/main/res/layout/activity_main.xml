@@ -2,34 +2,284 @@
 <androidx.constraintlayout.widget.ConstraintLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="@color/ocean_background"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
-    <TextView
-        android:id="@+id/title_text"
+    <!-- Overscan-safe margins (48dp) -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="android_tv_frontend"
-        android:textSize="48sp"
-        android:textColor="#FFFFFF"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="48dp" />
 
-    <TextView
-        android:id="@+id/subtitle_text"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ready for rating screen integration"
-        android:textSize="24sp"
-        android:textColor="#CCCCCC"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_text" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="48dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="48dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="48dp" />
+
+    <!-- Top bar -->
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="@drawable/bg_top_gradient"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@id/guideline_top"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/TopTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tic Tac Toe (Android TV)"
+            android:importantForAccessibility="yes" />
+
+        <TextView
+            android:id="@+id/tvTurn"
+            style="@style/SubtleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Player X turn" />
+    </LinearLayout>
+
+    <!-- Board container uses 60% of width, ratio 1:1, centered -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/board_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintTop_toBottomOf="@id/top_bar"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/board_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/board_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/board_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/board_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <!-- 3x3 Grid; each cell is focusable with custom background -->
+        <!-- Row 0 -->
+        <TextView
+            android:id="@+id/cell_0_0"
+            style="@style/CellMarkText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:background="@drawable/bg_cell"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:nextFocusUp="@id/cell_0_0"
+            android:nextFocusLeft="@id/cell_0_0"
+            app:layout_constraintStart_toStartOf="@id/board_left"
+            app:layout_constraintEnd_toStartOf="@id/cell_0_1"
+            app:layout_constraintTop_toTopOf="@id/board_top"
+            app:layout_constraintBottom_toTopOf="@id/cell_1_0" />
+
+        <TextView
+            android:id="@+id/cell_0_1"
+            style="@style/CellMarkText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:background="@drawable/bg_cell"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintStart_toEndOf="@id/cell_0_0"
+            app:layout_constraintEnd_toStartOf="@id/cell_0_2"
+            app:layout_constraintTop_toTopOf="@id/cell_0_0"
+            app:layout_constraintBottom_toBottomOf="@id/cell_0_0" />
+
+        <TextView
+            android:id="@+id/cell_0_2"
+            style="@style/CellMarkText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:background="@drawable/bg_cell"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintStart_toEndOf="@id/cell_0_1"
+            app:layout_constraintEnd_toEndOf="@id/board_right"
+            app:layout_constraintTop_toTopOf="@id/cell_0_1"
+            app:layout_constraintBottom_toBottomOf="@id/cell_0_1" />
+
+        <!-- Row 1 -->
+        <TextView
+            android:id="@+id/cell_1_0"
+            style="@style/CellMarkText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:background="@drawable/bg_cell"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintStart_toStartOf="@id/cell_0_0"
+            app:layout_constraintEnd_toEndOf="@id/cell_0_0"
+            app:layout_constraintTop_toBottomOf="@id/cell_0_0"
+            app:layout_constraintBottom_toTopOf="@id/cell_2_0" />
+
+        <TextView
+            android:id="@+id/cell_1_1"
+            style="@style/CellMarkText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:background="@drawable/bg_cell"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintStart_toStartOf="@id/cell_0_1"
+            app:layout_constraintEnd_toEndOf="@id/cell_0_1"
+            app:layout_constraintTop_toBottomOf="@id/cell_0_1"
+            app:layout_constraintBottom_toTopOf="@id/cell_2_1" />
+
+        <TextView
+            android:id="@+id/cell_1_2"
+            style="@style/CellMarkText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:background="@drawable/bg_cell"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintStart_toStartOf="@id/cell_0_2"
+            app:layout_constraintEnd_toEndOf="@id/cell_0_2"
+            app:layout_constraintTop_toBottomOf="@id/cell_0_2"
+            app:layout_constraintBottom_toTopOf="@id/cell_2_2" />
+
+        <!-- Row 2 -->
+        <TextView
+            android:id="@+id/cell_2_0"
+            style="@style/CellMarkText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:background="@drawable/bg_cell"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintStart_toStartOf="@id/cell_1_0"
+            app:layout_constraintEnd_toEndOf="@id/cell_1_0"
+            app:layout_constraintTop_toBottomOf="@id/cell_1_0"
+            app:layout_constraintBottom_toBottomOf="@id/board_bottom" />
+
+        <TextView
+            android:id="@+id/cell_2_1"
+            style="@style/CellMarkText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:background="@drawable/bg_cell"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintStart_toStartOf="@id/cell_1_1"
+            app:layout_constraintEnd_toEndOf="@id/cell_1_1"
+            app:layout_constraintTop_toBottomOf="@id/cell_1_1"
+            app:layout_constraintBottom_toBottomOf="@id/cell_2_0" />
+
+        <TextView
+            android:id="@+id/cell_2_2"
+            style="@style/CellMarkText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:background="@drawable/bg_cell"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintStart_toStartOf="@id/cell_1_2"
+            app:layout_constraintEnd_toEndOf="@id/cell_1_2"
+            app:layout_constraintTop_toBottomOf="@id/cell_1_2"
+            app:layout_constraintBottom_toBottomOf="@id/cell_2_1" />
+
+        <!-- Equal spacing using constraints -->
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_unused"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="left"
+            app:constraint_referenced_ids="cell_0_0,cell_0_1,cell_0_2,cell_1_0,cell_1_1,cell_1_2,cell_2_0,cell_2_1,cell_2_2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Bottom bar -->
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end">
+
+        <Button
+            android:id="@+id/btnReset"
+            style="@style/ActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset Game" />
+
+        <Space
+            android:layout_width="24dp"
+            android:layout_height="24dp" />
+
+        <Button
+            android:id="@+id/btnAbout"
+            style="@style/ActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About / Help" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
